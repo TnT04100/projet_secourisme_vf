@@ -16,12 +16,13 @@ import java.util.Set;
 @NoArgsConstructor
 @ToString(callSuper = true, of = {"numeroIdentifiantDefense", "nom", "prenom", "dateDeNaissance", "villeDeNaissance", "civilite"})
 @EqualsAndHashCode(callSuper = false, of = {"numeroIdentifiantDefense"})
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name = "stagiaire", uniqueConstraints = @UniqueConstraint(name = "uk__stagiaire__numero_identifiant_defense", columnNames = {"numero_identifiant_defense"}))
 public class Stagiaire extends AbstractPersistableWithIdSetter<Long> {
 
     @Getter
     @Setter
-    @Pattern(regexp = "^[0-9]{10}$")
+    @Pattern(regexp = "^\\d{10}$")
     @Column(name = "numero_identifiant_defense", nullable = false, length = 10)
     private String numeroIdentifiantDefense;
 
@@ -59,6 +60,9 @@ public class Stagiaire extends AbstractPersistableWithIdSetter<Long> {
 
     @Getter
     @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "stagiaire_aptitude",
+            joinColumns = @JoinColumn(name = "stagiaire_id", foreignKey = @ForeignKey(name = "stagiaire__aptitude__stagiaire_id__FK")),
+            inverseJoinColumns = @JoinColumn(name = "aptitude_id", foreignKey = @ForeignKey(name = "stagiaire__aptitude__aptitude_id__FK")))
     private Set<Aptitude> aptitudes;
 
     @Getter
