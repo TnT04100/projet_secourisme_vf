@@ -10,7 +10,7 @@ import net.ent.etnc.projet_secourisme_vf.models.commons.AbstractPersistableWithI
 
 @Entity
 @NoArgsConstructor
-@ToString(of = {"nomUnite", "abreviation", "localisation"}, callSuper = true)
+@ToString(callSuper = true, of = {"nomUnite", "abreviation"})
 @EqualsAndHashCode(of = {"nomUnite"}, callSuper = false)
 @Table(name = "unite", uniqueConstraints = @UniqueConstraint(name = "uk_unite_nom_unite", columnNames = {"nom_unite"}))
 public class Unite extends AbstractPersistableWithIdSetter<Long> {

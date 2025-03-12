@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Entity
 @NoArgsConstructor
-@ToString(callSuper = true, of = {"certificatConditionExercice", "chefDeCellule", "formateurs"})
+@ToString(callSuper = true, of = {"certificatConditionExercice", "chefDeCellule"})
 @EqualsAndHashCode(callSuper = false, of = {"certificatConditionExercice"})
 @Table(name = "cellule_secourisme", uniqueConstraints = @UniqueConstraint(name = "cellule_secourisme_certificat_condition_exercice_unique", columnNames = {"certificat_condition_exercice"}))
 public class CelluleSecourisme extends AbstractPersistableWithIdSetter<Long> {
