@@ -35,6 +35,6 @@ public class Unite extends AbstractPersistableWithIdSetter<Long> {
     @Setter
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "localisation_id", nullable = false)
+    @JoinColumn(name = "localisation_id", nullable = false, foreignKey = @ForeignKey(name = "fk_unite_localisation_id"))
     private Localisation localisation;
 }

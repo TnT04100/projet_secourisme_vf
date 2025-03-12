@@ -59,27 +59,27 @@ public class Formation extends AbstractPersistableWithIdSetter<Long> {
     @Setter
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "localisation_id", nullable = false)
+    @JoinColumn(name = "localisation_id", nullable = false, foreignKey = @ForeignKey(name = "fk__formation__localisation_id"))
     private Localisation localisation;
 
     @Getter
     @Setter
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "unite_enseignement_id", nullable = false)
+    @JoinColumn(name = "unite_enseignement_id", nullable = false, foreignKey = @ForeignKey(name = "fk__formation__unite_enseignement_id"))
     private UniteEnseignement uniteEnseignement;
 
     @Getter
     @ManyToMany
     @JoinTable(name = "formation_formateur",
-            joinColumns = @JoinColumn(name = "formation_id"),
-            inverseJoinColumns = @JoinColumn(name = "formateur_id"))
+            joinColumns = @JoinColumn(name = "formation_id", foreignKey = @ForeignKey(name = "fk__formation_formateur__formation_id")),
+            inverseJoinColumns = @JoinColumn(name = "formateur_id", foreignKey = @ForeignKey(name = "fk__formation_formateur__formateur_id")))
     private Set<Formateur> formateurs;
 
     @Getter
     @ManyToMany
     @JoinTable(name = "formation_stagiaire",
-            joinColumns = @JoinColumn(name = "formation_id"),
-            inverseJoinColumns = @JoinColumn(name = "stagiaire_id"))
+            joinColumns = @JoinColumn(name = "formation_id", foreignKey = @ForeignKey(name = "fk__formation_stagiaire__formation_id")),
+            inverseJoinColumns = @JoinColumn(name = "stagiaire_id", foreignKey = @ForeignKey(name = "fk__formation_stagiaire__stagiaire_id")))
     private Set<Stagiaire> stagiaires;
 }

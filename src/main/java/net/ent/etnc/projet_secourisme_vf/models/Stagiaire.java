@@ -1,10 +1,7 @@
 package net.ent.etnc.projet_secourisme_vf.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import net.ent.etnc.projet_secourisme_vf.models.commons.AbstractPersistableWithIdSetter;
 import net.ent.etnc.projet_secourisme_vf.models.references.Civilite;
@@ -33,7 +30,6 @@ public class Stagiaire extends AbstractPersistableWithIdSetter<Long> {
     @Size(max = 50)
     @Column(name = "nom", nullable = false, length = 50)
     private String nom;
-    private String prenom;
 
     @Getter
     @Setter
@@ -41,6 +37,14 @@ public class Stagiaire extends AbstractPersistableWithIdSetter<Long> {
     @NotBlank
     @Size(max = 50)
     @Column(name = "prenom", nullable = false, length = 50)
+    private String prenom;
+
+
+    @Getter
+    @Setter
+    @NotNull
+    @Past
+    @Column(name = "date_de_naissance", nullable = false)
     private LocalDate dateDeNaissance;
 
     @Getter

@@ -28,13 +28,13 @@ public class CelluleSecourisme extends AbstractPersistableWithIdSetter<Long> {
     @Setter
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "chef_de_cellule_id", nullable = false)
+    @JoinColumn(name = "chef_de_cellule_id", nullable = false, foreignKey = @ForeignKey(name = "cellule_secourisme_chef_de_cellule_fk"))
     private Formateur chefDeCellule;
 
     @Getter
     @OneToMany
     @JoinTable(name = "cellule_secourisme_formateurs",
-            joinColumns = @JoinColumn(name = "cellule_secourisme_id"),
-            inverseJoinColumns = @JoinColumn(name = "formateur_id"))
+            joinColumns = @JoinColumn(name = "cellule_secourisme_id", foreignKey = @ForeignKey(name = "cellule_secourisme_formateurs_cellule_secourisme_fk")),
+            inverseJoinColumns = @JoinColumn(name = "formateur_id", foreignKey = @ForeignKey(name = "cellule_secourisme_formateurs_formateur_fk")))
     private Set<Formateur> formateurs;
 }
