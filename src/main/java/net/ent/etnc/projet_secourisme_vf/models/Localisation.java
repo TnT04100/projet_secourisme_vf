@@ -28,7 +28,7 @@ public class Localisation extends AbstractPersistableWithIdSetter<Long> {
 
     @Getter
     @Setter
-    @Pattern(regexp = "^[0-9]{5}$")
+    @Pattern(regexp = "^\\d{5}$")
     @Column(name = "code_postal", length = 5, nullable = false)
     private String codePostal;
 
