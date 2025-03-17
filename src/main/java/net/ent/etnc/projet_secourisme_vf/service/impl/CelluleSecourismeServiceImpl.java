@@ -1,7 +1,7 @@
 package net.ent.etnc.projet_secourisme_vf.service.impl;
 
 import net.ent.etnc.projet_secourisme_vf.models.CelluleSecourisme;
-import net.ent.etnc.projet_secourisme_vf.models.repository.CelluleSecourismeRepository;
+import net.ent.etnc.projet_secourisme_vf.repository.CelluleSecourismeRepository;
 import net.ent.etnc.projet_secourisme_vf.service.CelluleSecourismeService;
 import net.ent.etnc.projet_secourisme_vf.service.base.AbstractService;
 import org.springframework.stereotype.Service;

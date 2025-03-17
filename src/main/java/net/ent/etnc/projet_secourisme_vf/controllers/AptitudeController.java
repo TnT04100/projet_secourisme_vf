@@ -5,9 +5,11 @@ import net.ent.etnc.projet_secourisme_vf.models.Aptitude;
 import net.ent.etnc.projet_secourisme_vf.payload.aptitude.AptitudeRepresentation;
 import net.ent.etnc.projet_secourisme_vf.payload.aptitude.AptituteRepresentationAssembler;
 import net.ent.etnc.projet_secourisme_vf.service.AptitudeService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/aptitudes")
 public class AptitudeController extends GenericController<Aptitude, Long, AptitudeRepresentation, AptitudeService, AptituteRepresentationAssembler> {

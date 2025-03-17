@@ -1,7 +1,7 @@
 package net.ent.etnc.projet_secourisme_vf.service.impl;
 
 import net.ent.etnc.projet_secourisme_vf.models.Localisation;
-import net.ent.etnc.projet_secourisme_vf.models.repository.LocalisationRepository;
+import net.ent.etnc.projet_secourisme_vf.repository.LocalisationRepository;
 import net.ent.etnc.projet_secourisme_vf.service.LocalisationService;
 import net.ent.etnc.projet_secourisme_vf.service.base.AbstractService;
 import org.springframework.stereotype.Service;

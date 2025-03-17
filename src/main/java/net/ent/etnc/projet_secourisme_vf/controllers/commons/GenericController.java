@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 public abstract class GenericController<T, ID, R extends Representation<ID>, S extends ServiceGenerique<T, ?, ID>, A extends Assembler<T, R>> {
 

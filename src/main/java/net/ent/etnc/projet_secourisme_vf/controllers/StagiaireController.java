@@ -5,9 +5,11 @@ import net.ent.etnc.projet_secourisme_vf.models.Stagiaire;
 import net.ent.etnc.projet_secourisme_vf.payload.stagiaire.StagiaireRepresentation;
 import net.ent.etnc.projet_secourisme_vf.payload.stagiaire.StagiaireRepresentationAssembler;
 import net.ent.etnc.projet_secourisme_vf.service.StagiaireService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/stagiaires")
 public class StagiaireController extends GenericController<Stagiaire, Long, StagiaireRepresentation, StagiaireService, StagiaireRepresentationAssembler> {
@@ -16,5 +18,5 @@ public class StagiaireController extends GenericController<Stagiaire, Long, Stag
         super.setAssembler(assembler);
         super.setService(service);
     }
-    
+
 }

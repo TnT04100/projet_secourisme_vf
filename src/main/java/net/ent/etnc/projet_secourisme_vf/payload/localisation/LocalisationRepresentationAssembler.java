@@ -3,9 +3,11 @@ package net.ent.etnc.projet_secourisme_vf.payload.localisation;
 import net.ent.etnc.projet_secourisme_vf.models.Localisation;
 import net.ent.etnc.projet_secourisme_vf.payload.commons.Assembler;
 import net.ent.etnc.projet_secourisme_vf.service.exceptions.ServiceException;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
+@Component
 public class LocalisationRepresentationAssembler implements Assembler<Localisation, LocalisationRepresentation> {
 
     @Override

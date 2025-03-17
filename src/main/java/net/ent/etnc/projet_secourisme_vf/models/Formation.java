@@ -82,4 +82,12 @@ public class Formation extends AbstractPersistableWithIdSetter<Long> {
             joinColumns = @JoinColumn(name = "formation_id", foreignKey = @ForeignKey(name = "fk__formation_stagiaire__formation_id")),
             inverseJoinColumns = @JoinColumn(name = "stagiaire_id", foreignKey = @ForeignKey(name = "fk__formation_stagiaire__stagiaire_id")))
     private Set<Stagiaire> stagiaires;
+
+    @Getter
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "formation_document",
+            joinColumns = @JoinColumn(name = "formation_id", foreignKey = @ForeignKey(name = "fk__formation_document__formation_id")),
+            inverseJoinColumns = @JoinColumn(name = "document_id", foreignKey = @ForeignKey(name = "fk__formation_document__document_id")))
+    private Set<Document> documentsFormation;
+
 }

@@ -75,4 +75,11 @@ public class Stagiaire extends AbstractPersistableWithIdSetter<Long> {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "unite_id", foreignKey = @ForeignKey(name = "stagiaire__unite_id__FK"))
     private Unite unite;
+
+    @Getter
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "stagiaire_document",
+            joinColumns = @JoinColumn(name = "stagiaire_id", foreignKey = @ForeignKey(name = "stagiaire__document__stagiaire_id__FK")),
+            inverseJoinColumns = @JoinColumn(name = "document_id", foreignKey = @ForeignKey(name = "stagiaire__document__document_id__FK")))
+    private Set<Document> documentsStagiaire;
 }
