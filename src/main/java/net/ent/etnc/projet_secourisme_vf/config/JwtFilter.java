@@ -8,6 +8,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import net.ent.etnc.projet_secourisme_vf.service.CustomUserDetailsService;
 import net.ent.etnc.projet_secourisme_vf.util.JwtUtil;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,6 +28,9 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @NonNull
     private CustomUserDetailsService userDetailsService;
+
+    @NonNull
+    private AuthenticationManager authenticationManager;
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain chain)

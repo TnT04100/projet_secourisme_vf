@@ -1,5 +1,6 @@
 package net.ent.etnc.projet_secourisme_vf.service.impl;
 
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import net.ent.etnc.projet_secourisme_vf.models.Admin;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 
 @Service
 @RequiredArgsConstructor
+@NoArgsConstructor
 public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
 
     @NonNull

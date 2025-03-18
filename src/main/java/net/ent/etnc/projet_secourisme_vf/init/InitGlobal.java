@@ -1,21 +1,16 @@
 package net.ent.etnc.projet_secourisme_vf.init;
 
-import com.github.javafaker.Faker;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import net.ent.etnc.projet_secourisme_vf.service.CelluleSecourismeService;
-import net.ent.etnc.projet_secourisme_vf.service.FormateurService;
+import net.ent.etnc.projet_secourisme_vf.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
-import java.util.Locale;
 
 @Component
 @RequiredArgsConstructor
 @Order(-1)
 public class InitGlobal implements CommandLineRunner {
-    // Initialise moi toutes les classes s'il te plait avec faker
 
     @NonNull
     private final FormateurService formateurService;
@@ -24,10 +19,28 @@ public class InitGlobal implements CommandLineRunner {
     private final CelluleSecourismeService celluleSecourismeService;
 
     @NonNull
-    Faker faker = Faker.instance(Locale.FRANCE);
+    private final StagiaireService stagiaireService;
+
+    @NonNull
+    private final LocalisationService localisationService;
+
+    @NonNull
+    private final UniteService uniteService;
+
+    @NonNull
+    private final UniteEnseignementService uniteEnseignementService;
 
     @Override
     public void run(String... args) throws Exception {
-        // TODO document why this method is empty
+        try {
+            uniteEnseignementService.init();
+            localisationService.init();
+            uniteService.init();
+            stagiaireService.init();
+            formateurService.init();
+            celluleSecourismeService.init();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

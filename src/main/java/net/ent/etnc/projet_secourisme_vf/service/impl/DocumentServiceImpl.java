@@ -19,12 +19,6 @@ public class DocumentServiceImpl extends AbstractService<Document, DocumentRepos
 
     @Override
     public void init() throws ServiceException {
-        if (this.getRepository().count() == 0) {
-            Document document = new Document();
-            document.setNom(faker.lorem().word());
-            document.setChemin();
-
-            this.save(document);
-        }
+        // TODO document why this method is empty
     }
 }

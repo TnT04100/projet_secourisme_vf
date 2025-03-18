@@ -23,10 +23,7 @@ public class AptitudeServiceImpl extends AbstractService<Aptitude, AptitudeRepos
 
     @Override
     public void init() throws ServiceException {
-        if (this.getRepository().count() == 0) {
-            Aptitude aptitude = new Aptitude();
-
-            this.save(aptitude);
-        }
+        // TODO document why this method is empty
     }
 }
+
