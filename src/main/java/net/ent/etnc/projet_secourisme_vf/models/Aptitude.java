@@ -19,7 +19,6 @@ public class Aptitude extends AbstractPersistableWithIdSetter<Long> {
 
     @Getter
     @Setter
-    @NotNull
     @Column(name = "date_obtention", nullable = false)
     private LocalDate dateObtention;
 
@@ -39,6 +38,9 @@ public class Aptitude extends AbstractPersistableWithIdSetter<Long> {
     public void prepersist() {
         if (dateFinValidite == null) {
             dateFinValidite = dateObtention.plusYears(uniteEnseignement.getDureeValidite().longValue());
+        }
+        if (dateObtention == null) {
+            dateObtention = LocalDate.now();
         }
     }
 }
