@@ -8,13 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/auth")
 public class AuthController {
 
@@ -33,11 +31,13 @@ public class AuthController {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
             );
+            System.out.println("Login success");
         } catch (Exception e) {
             return ResponseEntity.status(401).body("Identifiants invalides");
         }
         UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getUsername());
         String jwt = jwtUtil.generateToken(userDetails);
+        System.out.println("Token generated : " + jwt);
         return ResponseEntity.ok(new JwtResponse(jwt));
     }
 }

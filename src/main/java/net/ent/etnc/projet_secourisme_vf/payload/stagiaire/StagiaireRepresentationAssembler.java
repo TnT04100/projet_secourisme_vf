@@ -31,6 +31,7 @@ public class StagiaireRepresentationAssembler implements Assembler<Stagiaire, St
                 .prenom(stagiaire.getPrenom())
                 .dateDeNaissance(stagiaire.getDateDeNaissance())
                 .villeDeNaissance(stagiaire.getVilleDeNaissance())
+                .grade(stagiaire.getGrade())
                 .civilite(stagiaire.getCivilite())
                 .aptitudesIds(stagiaire.getAptitudes().stream().map(Aptitude::getId).toList())
                 .uniteId(stagiaire.getUnite().getId())

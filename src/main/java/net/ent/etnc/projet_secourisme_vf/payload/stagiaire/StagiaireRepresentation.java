@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import net.ent.etnc.projet_secourisme_vf.models.references.Civilite;
+import net.ent.etnc.projet_secourisme_vf.models.references.Grade;
 import net.ent.etnc.projet_secourisme_vf.payload.commons.Representation;
 
 import java.time.LocalDate;
@@ -19,6 +20,7 @@ public class StagiaireRepresentation implements Representation<Long> {
     private String numeroIdentifiantDefense;
     private String nom;
     private String prenom;
+    private Grade grade;
     private LocalDate dateDeNaissance;
     private String villeDeNaissance;
     private Civilite civilite;

@@ -30,6 +30,9 @@ public class InitGlobal implements CommandLineRunner {
     @NonNull
     private final UniteEnseignementService uniteEnseignementService;
 
+    @NonNull
+    private final AuthService authService;
+
     @Override
     public void run(String... args) throws Exception {
         try {
@@ -39,6 +42,7 @@ public class InitGlobal implements CommandLineRunner {
             stagiaireService.init();
             formateurService.init();
             celluleSecourismeService.init();
+            authService.init();
         } catch (Exception e) {
             e.printStackTrace();
         }

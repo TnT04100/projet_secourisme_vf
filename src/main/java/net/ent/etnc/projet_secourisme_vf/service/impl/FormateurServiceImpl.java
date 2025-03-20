@@ -3,6 +3,7 @@ package net.ent.etnc.projet_secourisme_vf.service.impl;
 import com.github.javafaker.Faker;
 import net.ent.etnc.projet_secourisme_vf.models.Formateur;
 import net.ent.etnc.projet_secourisme_vf.models.references.Civilite;
+import net.ent.etnc.projet_secourisme_vf.models.references.Grade;
 import net.ent.etnc.projet_secourisme_vf.repository.FormateurRepository;
 import net.ent.etnc.projet_secourisme_vf.service.FormateurService;
 import net.ent.etnc.projet_secourisme_vf.service.UniteService;
@@ -35,8 +36,10 @@ public class FormateurServiceImpl extends AbstractService<Formateur, FormateurRe
                     formateur.setPrenom(faker.name().firstName());
                     formateur.setDateDeNaissance(faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
                     formateur.setVilleDeNaissance(faker.address().city());
+                    formateur.setGrade(Grade.values()[faker.number().numberBetween(0, Grade.values().length)]);
                     formateur.setCivilite(Civilite.values()[faker.number().numberBetween(0, Civilite.values().length)]);
                     formateur.setUnite(uniteService.findById((long) faker.number().numberBetween(1, 10)).orElse(null));
+                    this.save(formateur);
                 }
             } catch (Exception e) {
                 throw new ServiceException(e);

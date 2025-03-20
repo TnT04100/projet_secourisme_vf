@@ -5,6 +5,7 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 import net.ent.etnc.projet_secourisme_vf.models.commons.AbstractPersistableWithIdSetter;
 import net.ent.etnc.projet_secourisme_vf.models.references.Civilite;
+import net.ent.etnc.projet_secourisme_vf.models.references.Grade;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -38,6 +39,13 @@ public class Stagiaire extends AbstractPersistableWithIdSetter<Long> {
     @Size(max = 50)
     @Column(name = "prenom", nullable = false, length = 50)
     private String prenom;
+
+    @Getter
+    @Setter
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "grade", nullable = false, length = 40)
+    private Grade grade;
 
 
     @Getter

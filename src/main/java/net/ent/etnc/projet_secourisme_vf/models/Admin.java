@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import net.ent.etnc.projet_secourisme_vf.models.commons.AbstractPersistableWithIdSetter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @NoArgsConstructor
@@ -28,9 +29,13 @@ public class Admin extends AbstractPersistableWithIdSetter<Long> {
     private String username;
 
     @Getter
-    @Setter
     @NotNull
     @NotBlank
     @Column(name = "password", nullable = false)
     private String password;
+
+    public void setPassword(String password) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        this.password = encoder.encode(password);
+    }
 }

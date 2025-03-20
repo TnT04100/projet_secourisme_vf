@@ -3,6 +3,7 @@ package net.ent.etnc.projet_secourisme_vf.service.impl;
 import com.github.javafaker.Faker;
 import net.ent.etnc.projet_secourisme_vf.models.Stagiaire;
 import net.ent.etnc.projet_secourisme_vf.models.references.Civilite;
+import net.ent.etnc.projet_secourisme_vf.models.references.Grade;
 import net.ent.etnc.projet_secourisme_vf.repository.StagiaireRepository;
 import net.ent.etnc.projet_secourisme_vf.service.StagiaireService;
 import net.ent.etnc.projet_secourisme_vf.service.UniteService;
@@ -39,6 +40,8 @@ public class StagiaireServiceImpl extends AbstractService<Stagiaire, StagiaireRe
                     stagiaire.setVilleDeNaissance(faker.address().city());
                     stagiaire.setCivilite(Civilite.values()[faker.number().numberBetween(0, Civilite.values().length)]);
                     stagiaire.setUnite(uniteService.findById((long) faker.number().numberBetween(1, 10)).orElse(null));
+                    stagiaire.setGrade(Grade.values()[faker.number().numberBetween(0, Grade.values().length)]);
+                    this.save(stagiaire);
                 }
             } catch (Exception e) {
                 throw new ServiceException(e);

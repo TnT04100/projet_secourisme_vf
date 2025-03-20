@@ -1,6 +1,5 @@
 package net.ent.etnc.projet_secourisme_vf.service.impl;
 
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import net.ent.etnc.projet_secourisme_vf.models.Admin;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 
 @Service
 @RequiredArgsConstructor
-@NoArgsConstructor
 public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
 
     @NonNull
@@ -26,6 +24,7 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
         if (admin == null) {
             throw new UsernameNotFoundException("Utilisateur non trouvé : " + username);
         }
+        System.out.println("Loading user : " + admin.getUsername());
         return new org.springframework.security.core.userdetails.User(
                 admin.getUsername(), admin.getPassword(), new ArrayList<>()
         );

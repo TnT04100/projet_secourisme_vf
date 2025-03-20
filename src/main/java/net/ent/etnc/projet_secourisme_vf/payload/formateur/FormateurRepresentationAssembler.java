@@ -30,6 +30,7 @@ public class FormateurRepresentationAssembler implements Assembler<Formateur, Fo
                 .prenom(formateur.getPrenom())
                 .dateDeNaissance(formateur.getDateDeNaissance())
                 .villeDeNaissance(formateur.getVilleDeNaissance())
+                .grade(formateur.getGrade())
                 .civilite(formateur.getCivilite())
                 .aptitudesIds(formateur.getAptitudes().stream().map(Aptitude::getId).toList())
                 .uniteId(formateur.getUnite().getId())
