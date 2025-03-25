@@ -7,4 +7,12 @@ import net.ent.etnc.projet_secourisme_vf.service.exceptions.ServiceException;
 
 public interface FormationService extends ServiceGenerique<Formation, FormationRepository, Long> {
     void init() throws ServiceException;
+
+    long countCompletedFormations();
+
+    long countTotalFormations();
+
+    long countFormationsByFormateurId(Long formateurId);
+
+    long countFormationsByStagiaireId(Long stagiaireId);
 }
