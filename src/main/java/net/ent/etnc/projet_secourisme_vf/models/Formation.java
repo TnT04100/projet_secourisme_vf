@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import net.ent.etnc.projet_secourisme_vf.models.commons.AbstractPersistableWithIdSetter;
+import net.ent.etnc.projet_secourisme_vf.models.exceptions.FormationException;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -25,9 +26,7 @@ public class Formation extends AbstractPersistableWithIdSetter<Long> {
     private LocalDate dateDebut;
 
     @Getter
-    @Setter
     @NotNull
-    @Future
     @Column(name = "date_fin", nullable = false)
     private LocalDate dateFin;
 
@@ -89,5 +88,15 @@ public class Formation extends AbstractPersistableWithIdSetter<Long> {
             joinColumns = @JoinColumn(name = "formation_id", foreignKey = @ForeignKey(name = "fk__formation_document__formation_id")),
             inverseJoinColumns = @JoinColumn(name = "document_id", foreignKey = @ForeignKey(name = "fk__formation_document__document_id")))
     private Set<Document> documentsFormation;
+
+    public void setDateFin(LocalDate dateFin) throws FormationException {
+        if (dateFin.isBefore(dateDebut)) {
+            throw new FormationException("La date de fin de la formation ne peut pas être antérieure à la date de début.");
+        }
+        if (dateFin.isBefore(LocalDate.now())) {
+            throw new FormationException("La date de fin de la formation ne peut pas être antérieure à la date du jour.");
+        }
+        this.dateFin = dateFin;
+    }
 
 }

@@ -11,6 +11,7 @@ import net.ent.etnc.projet_secourisme_vf.service.exceptions.ServiceException;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.Collections;
 
 @Component
 @RequiredArgsConstructor
@@ -40,8 +41,12 @@ public class FormationRepresentationAssembler implements Assembler<Formation, Fo
                 .codeCours(formation.getCodeCours())
                 .localisationId(formation.getLocalisation().getId())
                 .uniteEnseignementId(formation.getUniteEnseignement().getId())
-                .formateursIds(formation.getFormateurs().stream().map(Formateur::getId).toList())
-                .stagiairesIds(formation.getStagiaires().stream().map(Stagiaire::getId).toList())
+                .formateursIds(formation.getFormateurs() != null ?
+                        formation.getFormateurs().stream().map(Formateur::getId).toList() :
+                        Collections.emptyList())
+                .stagiairesIds(formation.getStagiaires() != null ?
+                        formation.getStagiaires().stream().map(Stagiaire::getId).toList() :
+                        Collections.emptyList())
                 .build();
     }
 
