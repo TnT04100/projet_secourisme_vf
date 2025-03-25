@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
-
+    
     private static final String SECRET = "CLE_SECRETE_A_NE_PAS_DIVULGUER_CEST_IMPORTANT_SINON_CEST_MORT_JEN_RAJOUTE_ENCORE_UN_PEU"; // Clé secrète (à sécuriser en production)
     private final SecretKey key = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8)); // Génération de la clé
 

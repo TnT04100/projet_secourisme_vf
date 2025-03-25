@@ -3,6 +3,7 @@ package net.ent.etnc.projet_secourisme_vf.controllers.commons;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import net.ent.etnc.projet_secourisme_vf.payload.commons.Assembler;
 import net.ent.etnc.projet_secourisme_vf.payload.commons.Representation;
 import net.ent.etnc.projet_secourisme_vf.service.base.ServiceGenerique;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 import java.util.Optional;
 
+@Slf4j
 @CrossOrigin(origins = "*")
 @RestController
 public abstract class GenericController<T, ID, R extends Representation<ID>, S extends ServiceGenerique<T, ?, ID>, A extends Assembler<T, R>> {
@@ -48,11 +50,13 @@ public abstract class GenericController<T, ID, R extends Representation<ID>, S e
 
     @PostMapping("/")
     public ResponseEntity<R> create(@RequestBody R representation) {
+        log.info("Création - données reçues: {}", representation);
         try {
             T entity = assembler.toModel(representation);
             entity = service.save(entity);
             return ResponseEntity.ok(assembler.toRepresentation(entity));
         } catch (Exception e) {
+            log.error("Erreur lors de la création de la formation", e);
             return ResponseEntity.internalServerError().build();
         }
     }
@@ -73,6 +77,7 @@ public abstract class GenericController<T, ID, R extends Representation<ID>, S e
 
     @PutMapping("/{id}/")
     public ResponseEntity<R> update(@PathVariable("id") ID id, @RequestBody R representation) {
+        log.info("Mise à jour de l'ID {} - données reçues: {}", id, representation);
         try {
             Optional<T> dinoOptional = service.findById(id);
             if (dinoOptional.isEmpty()) {
