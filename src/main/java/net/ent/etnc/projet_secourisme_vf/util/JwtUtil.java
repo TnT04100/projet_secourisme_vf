@@ -11,18 +11,19 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
-    
+
     private static final String SECRET = "CLE_SECRETE_A_NE_PAS_DIVULGUER_CEST_IMPORTANT_SINON_CEST_MORT_JEN_RAJOUTE_ENCORE_UN_PEU"; // Clé secrète (à sécuriser en production)
     private final SecretKey key = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8)); // Génération de la clé
 
     public String generateToken(UserDetails userDetails) {
         // 1 heure
-        int jwtExpirationInMs = 3600000;
+        // TODO: modifier la durée du token pour 1h
+        int jwtExpirationInMs = 36000000;
         return Jwts.builder()
-                .subject(userDetails.getUsername()) // Nouvelle API fluide
-                .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + jwtExpirationInMs))
-                .signWith(key) // Utilisation de la SecretKey sans SignatureAlgorithm
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationInMs))
+                .signWith(key)
                 .compact();
     }
 
@@ -32,20 +33,23 @@ public class JwtUtil {
     }
 
     public String extractUsername(String token) {
+        if (token == null || token.trim().isEmpty()) {
+            throw new IllegalArgumentException("Le jeton JWT est vide ou null");
+        }
         return Jwts.parser()
-                .verifyWith(key) // Vérification avec la clé
+                .setSigningKey(key)
                 .build()
-                .parseSignedClaims(token) // Nouvelle méthode pour parser les claims signés
-                .getPayload()
+                .parseClaimsJws(token)
+                .getBody()
                 .getSubject();
     }
 
     private boolean isTokenExpired(String token) {
         Date expiration = Jwts.parser()
-                .verifyWith(key) // Vérification avec la clé
+                .setSigningKey(key)
                 .build()
-                .parseSignedClaims(token)
-                .getPayload()
+                .parseClaimsJws(token)
+                .getBody()
                 .getExpiration();
         return expiration.before(new Date());
     }

@@ -1,7 +1,7 @@
 package net.ent.etnc.projet_secourisme_vf.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -21,7 +21,7 @@ public class Formation extends AbstractPersistableWithIdSetter<Long> {
     @Getter
     @Setter
     @NotNull
-    @Future
+    @FutureOrPresent
     @Column(name = "date_debut", nullable = false)
     private LocalDate dateDebut;
 
