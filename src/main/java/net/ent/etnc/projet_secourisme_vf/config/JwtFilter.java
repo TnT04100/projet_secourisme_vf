@@ -72,7 +72,6 @@ public class JwtFilter extends OncePerRequestFilter {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             if (jwtUtil.validateToken(token, userDetails)) {
                 setAuthenticationContext(userDetails, request);
-                log.info("Authentification réussie pour l'utilisateur : {}", username);
             }
         } catch (MalformedJwtException e) {
             log.error("Token JWT mal formé : {}", e.getMessage());

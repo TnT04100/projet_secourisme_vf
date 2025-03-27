@@ -1,9 +1,6 @@
 package net.ent.etnc.projet_secourisme_vf.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -12,13 +9,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import net.ent.etnc.projet_secourisme_vf.models.commons.AbstractPersistableWithIdSetter;
+import net.ent.etnc.projet_secourisme_vf.models.references.Role;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false, of = {"username"})
 @Table(name = "authentification", uniqueConstraints = @UniqueConstraint(name = "uk_authentification_username", columnNames = {"username"}))
-public class Admin extends AbstractPersistableWithIdSetter<Long> {
+public class Utilisateur extends AbstractPersistableWithIdSetter<Long> {
 
     @Getter
     @Setter
@@ -33,6 +31,13 @@ public class Admin extends AbstractPersistableWithIdSetter<Long> {
     @NotBlank
     @Column(name = "password", nullable = false)
     private String password;
+
+    @Getter
+    @Setter
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false, length = 40)
+    private Role role;
 
     public void setPassword(String password) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

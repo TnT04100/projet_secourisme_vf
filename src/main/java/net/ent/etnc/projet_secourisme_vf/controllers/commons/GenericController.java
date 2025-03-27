@@ -56,7 +56,7 @@ public abstract class GenericController<T, ID, R extends Representation<ID>, S e
             entity = service.save(entity);
             return ResponseEntity.ok(assembler.toRepresentation(entity));
         } catch (Exception e) {
-            log.error("Erreur lors de la création de la formation", e);
+            log.error("Erreur lors de la suppression de la formation", e);
             return ResponseEntity.internalServerError().build();
         }
     }
@@ -71,6 +71,7 @@ public abstract class GenericController<T, ID, R extends Representation<ID>, S e
             service.delete(entity);
             return ResponseEntity.ok(assembler.toRepresentation(entity));
         } catch (Exception e) {
+            log.error("Erreur lors de la création de la formation", e);
             return ResponseEntity.internalServerError().build();
         }
     }
